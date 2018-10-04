@@ -21,7 +21,7 @@ class TripsController < ApplicationController
   end
 
   # PATCH/PUT /trips/1
-  def update
+  def update     # using PUT instead of PATCH in api.js
     # byebug   #have the right info here
     @trip = @trip.update(trips_params)
     render json: @trip
