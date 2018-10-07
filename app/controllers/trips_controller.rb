@@ -9,7 +9,11 @@ class TripsController < ApplicationController
   # POST /trips
   def create
     @trip = Trip.create(trips_params)
-    render json: @trip
+    if @trip.valid?
+      render json: @trip
+    else
+      render json: @trip.errors, status: :unprocessable_entity
+    end
   end
 
   # GET /trips/1
@@ -22,12 +26,20 @@ class TripsController < ApplicationController
 
   # PATCH/PUT /trips/1
   def update     # using PUT instead of PATCH in api.js
-    # byebug   #have the right info here
-    @trip = @trip.update(trips_params)
-    render json: @trip
+    # byebug
+    @trip.update(trips_params)
+    if @trip.valid?
+      render json: @trip
+    else
+      render json: trip.errors, status: :unprocessable_entity
+      #render json: { error: "Could not update the trip" }
+    end
   end
 
   # DELETE /trips/1
+  def destroy
+    @trip.destroy
+  end
 
 # PATCH/PUT /lists/1
 # def update
@@ -52,8 +64,6 @@ class TripsController < ApplicationController
 #   end
 # end
 
-
-
   private
 
   def set_trip
@@ -61,6 +71,7 @@ class TripsController < ApplicationController
   end
 
   def trips_params
+    # params.fetch(:trip, {})
     params.require(:trip).permit(:id, :name, :country, :location, :things_did,
     :notes, :date_from, :date_to, :user_id)
   end
