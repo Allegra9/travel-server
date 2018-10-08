@@ -5,6 +5,9 @@ class Trip < ApplicationRecord
   validates :location, presence: true
   validates :country, presence: true
 
+  validates :date_from, presence: true
+  validates :date_to, presence: true
+
   #validates :things_did, presence: true
 
 end
