@@ -10,7 +10,12 @@ class UsersController < ApplicationController
     if user.valid?
       render json: { token: issue_token({ id: user.id }) }
     else
-      render json: {error: "Cannot create user"}
+      user = User.find_by(username: params[:username])
+      if user
+        render json: {error: "*Username already exists"}
+      else
+        render json: {error: "*Email already exists"}
+      end
     end
   end
 
