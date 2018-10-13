@@ -7,9 +7,6 @@ class Trip < ApplicationRecord
 
   validates :date_from, presence: true
   validates :date_to, presence: true
-
-  #validates :things_did, presence: true
-
 end
 
 # t.string "name"
@@ -19,7 +16,7 @@ end
 # t.string "things_did"    #optional
 # t.string "notes"       #optional
 #
-# t.datetime "date_from"   # month and year required, exact date optional
+# t.datetime "date_from"
 # t.datetime "date_to"
 #
 # t.integer "user_id"
