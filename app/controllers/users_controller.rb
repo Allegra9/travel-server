@@ -19,6 +19,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def login
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
+      render json: { token: issue_token({ id: user.id }) }
+    else
+      render json: {error: "Cannot find or authenticate user"}
+    end
+  end
+
   # def create
   #   user = User.create(users_params) #or users_params
   #   #render json: user

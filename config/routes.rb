@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :users
   resources :trips
 
-  #added this to help w CORS?:
-  #match '*path', via: [:options], to:  lambda {|_| [204, {'Content-Type' => 'text/plain'}, []]}
+  post '/login', to: 'users#login'
 
 end
