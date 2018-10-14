@@ -11,7 +11,7 @@ aya = User.create(username: "aya", email: "aya@gmail.com", password: "123")
 
 
 nice_trip = Trip.create(
-  name: 'Weekend in Nice',
+  name: 'Weekend in Nice ALLEGRA',
   country: 'France',
   location: "Nice, Côt d'Azure",
   things_did: "Lunch and beach",
@@ -22,7 +22,7 @@ nice_trip = Trip.create(
 )
 
 nice_trip = Trip.create(
-  name: 'Weekend in Nice',
+  name: 'Weekend in Nice AYA',
   country: 'France',
   location: "Nice, Côt d'Azure",
   things_did: "Lunch and beach",

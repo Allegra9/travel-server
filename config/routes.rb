@@ -5,5 +5,9 @@ Rails.application.routes.draw do
   resources :trips
 
   post '/login', to: 'users#login'
+  get '/current_user', to: 'users#get_current_user'
+
+  get "/:user_id/trips", to: 'trips#user_trips'
+  post "/:user_id/trips", to: 'trips#create'
 
 end
