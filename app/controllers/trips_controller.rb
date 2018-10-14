@@ -17,11 +17,20 @@ class TripsController < ApplicationController
 
   # POST /trips
   def create
-    @trip = Trip.create(trips_params)
+    @trip = Trip.create(
+      name: params[:name],
+      location: params[:location],
+      country: params[:country],
+      things_did: params[:things_did],
+      notes: params[:notes],
+      date_from: (params[:date_from].to_time+1.day).strftime("%F"),
+      date_to: (params[:date_to].to_time+1.day).strftime("%F"),
+      user_id: params[:user_id]
+    )
     if @trip.valid?
       render json: @trip
     else
-      render json: @trip.errors, status: :unprocessable_entity
+      render json: { error: "*Something went wrong... Could not create trip" }
     end
   end
 
@@ -39,7 +48,7 @@ class TripsController < ApplicationController
     if @trip.valid?
       render json: @trip
     else
-      render json: { error: "Could not update the trip" }
+      render json: { error: "Could not update trip" }
     end
   end
 
