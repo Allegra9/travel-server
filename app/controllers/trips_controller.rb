@@ -44,11 +44,20 @@ class TripsController < ApplicationController
 
   # PATCH/PUT /trips/1
   def update     # using PUT instead of PATCH in api.js
-    @trip.update(trips_params)
+    @trip.update(
+      name: params[:name],
+      location: params[:location],
+      country: params[:country],
+      things_did: params[:things_did],
+      notes: params[:notes],
+      date_from: (params[:date_from].to_time+1.day).strftime("%F"),
+      date_to: (params[:date_to].to_time+1.day).strftime("%F"),
+      user_id: params[:user_id]
+    )
     if @trip.valid?
       render json: @trip
     else
-      render json: { error: "Could not update trip" }
+      render json: { error: "*Something went wrong... Could not update trip" }
     end
   end
 
