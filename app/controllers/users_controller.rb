@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     if user && user.authenticate(params[:password])
       render json: { token: issue_token({ id: user.id }) }
     else
-      render json: {error: "Cannot find or authenticate user"}
+      render json: {error: "*Cannot find or authenticate user"}
     end
   end
 
