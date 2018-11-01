@@ -25,6 +25,12 @@ class TripsController < ApplicationController
       notes: params[:notes],
       date_from: (params[:date_from].to_time+1.day).strftime("%F"),
       date_to: (params[:date_to].to_time+1.day).strftime("%F"),
+
+      image_data: (params[:files].map {|file| file[:data]} ),
+      image_name: (params[:files].map {|file| file[:name]} ),
+      image_type: (params[:files].map {|file| file[:type]} ),
+      image_size: (params[:files].map {|file| file[:size]} ),
+
       user_id: params[:user_id]
     )
     if @trip.valid?
@@ -52,6 +58,7 @@ class TripsController < ApplicationController
       notes: params[:notes],
       date_from: (params[:date_from].to_time+1.day).strftime("%F"),
       date_to: (params[:date_to].to_time+1.day).strftime("%F"),
+      images: (params[:files]),
       user_id: params[:user_id]
     )
     if @trip.valid?
@@ -72,9 +79,9 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
   end
 
-  def trips_params
-    params.require(:trip).permit(:id, :name, :country, :location, :things_did,
-    :notes, :date_from, :date_to, :user_id)
-  end
+  # def trips_params
+  #   params.require(:trip).permit(:id, :name, :country, :location, :things_did,
+  #   :notes, :date_from, :date_to, :images, :user_id)
+  # end
 
 end

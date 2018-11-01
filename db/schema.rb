@@ -23,6 +23,10 @@ ActiveRecord::Schema.define(version: 2018_09_21_223154) do
     t.string "notes"
     t.datetime "date_from"
     t.datetime "date_to"
+    t.string "image_data"
+    t.string "image_name"
+    t.string "image_type"
+    t.string "image_size"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
